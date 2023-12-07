@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Care Plant</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="static/img/favcare.png" rel="icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="static/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
+    <link href="static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="static/css/style1.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!--  Header  -->
+    <header id="header" class="fixed-top d-flex align-items-center" style="background-color: #387301">
+      <div class="container d-flex align-items-center justify-content-between">
+        <div class="logo">
+          <h1 class="text-light">
+            <a href="{{ url_for('index') }}"><img src="static/img/favcare.png" alt="" class="img-fluid" /></a>
+            <a href="{{ url_for('index') }}" style="color: #f6f7d4"><span>Care Plant</span></a>
+          </h1>
+        </div>
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto active" style="color: #f6f7d4" href="#home">Beranda</a></li>
+            <li><a class="nav-link scrollto" href="#detect">Deteksi</a></li>
+            <li><a class="nav-link scrollto" href="#artikel">Artikel</a></li>
+            <li><a class="nav-link scrollto" href="#team">Tentang Kami</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!--  beranda section  -->
+    <section id="home" class="d-flex align-items-center">
+      <div class="containe p-5">
+        <div class="row gy-4">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h1>Mau Hasil Panen Tomat Melimpah?</h1>
+            <h4>Yakin Tanaman Tomatnya Sehat?</h4>
+            <h4>Scan Daun Tomat Kamu Disini</h4>
+            <div>
+              <a href="#detect" id="detect" class="btn-get-started scrollto">Coba Sekarang</a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 hero-img">
+            <img src="static/img/tomath.png" class="img-fluid animated width:50px" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- beranda section -->
+
+    <main id="main">
+      <!--  detect section  -->
+      <section class="detect section-bg">
+        <div class="container" data-aos="fade-up">
+          <div class="row justify-content-between">
+            <div class="col-lg-5 d-flex align-items-center justify-content-center about-img">
+              <img src="static/img/tomde.jpg" class="img-fluid" alt="" data-aos="zoom-in" />
+            </div>
+
+            <div class="col-lg-6 pt-5 pt-lg-0">
+              <h3 data-aos="fade-up">Pentingnya Mengetahui Penyakit Tanaman</h3>
+              <p data-aos="fade-up" data-aos-delay="100">
+                Tahukah kamu jika daun tanaman terserang suatu penyakit, ini akan membahayakan kondisi tanaman dan berpengaruh pada hasil produksi panen?? <br />
+                Jenis penyakit pada daun dapat dijelaskan dengan gejala yang berbeda, walaupun gejala yang ada tidak selalu dapat menjelaskan nama penyakit yang menyerang. <br />
+                Hal ini terjadi karena banyaknya jenis penyakit yang memiliki gejala serupa dan hampir terlihat sama. <br />
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end detect section  -->
+      <section id="detect" class="section-bg">
+        <div class="container" data-aos="fade-up">
+          <div class="row text-center mb-3">
+            <div class="col">
+              <div class="section-title">
+                <p>Deteksi Tanamanmu Disini</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center fs-6">
+          <div class="col-md-5">
+            <form action="/api/Deteksi" method="POST" enctype="multipart/form-data">
+              <h5>Mulai dengan klik choose file</h5>
+              <img src="static/img/tomatoleaf.jpg" width="200" class="img-fluid" alt="" data-aos="zoom-in" />
+              <br />
+              <p>
+                <label for="file">Pilih Gambar:</label>
+                <input type="file" id="input_gambar" name="file" />
+              </p>
+              <div class="dieses">
+                <p data-aos="fade-up" data-aos-delay="100">*pastikan gambar berformat .jpg atau .png dengan ukuran 200 x 200</p>
+              </div>
+              <button type="submit" id="prediksi_submit" class="btn btn-light">Prediksi</button>
+            </form>
+          </div>
+          <div class="col-md-5">
+            <div id="hasil_prediksi">
+              <h5>Hasil Prediksi</h5>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- card -->
+      <!-- <section id="dieses" class="section-bg">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title">
+            <p>Cara Menanggulangi Penyakit Tanaman Daun Tomat</p>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-2 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon-box">
+                <h5 class="tittle">Tomato Leaf Bacterial Spot</h5>
+                <p class="description">Lakukan pemangkasan daun yang terkena infeksi</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-2 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+              <div class="icon-box">
+                <h5 class="tittle">Tomato Leaf Early Blight</h5>
+                <p class="description">Lakukan penyiraman pada abgian pangkal untuk mencegah penyakit berkembang</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-2 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box">
+                <h5 class="tittle">Tomato Leaf Late Blight</h5>
+                <p class="description">Cabut tanaman yang sudah mulai memunculkan gejala</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-2 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box">
+                <h5 class="tittle">Tomato Leaf Mosaic Virus</h5>
+                <p class="description">Gunakan jaring anti serangga yang sesuai agar dapat membantu mengurangi resiko penularan</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-2 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box">
+                <h5 class="tittle">Tomato Leaf Septoria</h5>
+                <p class="description">Hilangkan daun yang terinfeksi dengan alat pemotong secara menyeluruh</p>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-2 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+              <div class="icon-box">
+                <h5 class="tittle">Tomato Leaf Yellow Virus</h5>
+                <p class="description">Melakukan rotasi tanaman dengan tanaman non-inang, seperti jagung, kacang-kacangan, atau umbi-umbian, selama dua hingga tiga tahun.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+      <!-- Artikel -->
+      <section id="artikel" class="artikel section-bg">
+        <div class="container" data-aos="fade-up">
+          <div class="section-title">
+            <h2>Artikel</h2>
+            <p>Ketahui informasi lebih lanjut seputar tanaman bersama CarePlant</p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bx-world"></i></div>
+                <h4 class="title"><a href="{{ url_for('artikel') }}">Potensi Produksi dan Ekonomi Buah Tomat di Indonesia</a></h4>
+                <p class="description">produksi tomat di Indonesia mencapai 1,12 juta ton pada tahun 2022.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bx-file"></i></div>
+                <h4 class="title"><a href="{{ url_for('artikel2') }}">Cara memilih Tomat yang Segar</a></h4>
+                <p class="description">Cara memilih tomat yang bagus adalah dengan mengamati warnanya</p>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bi bi-cloud-sun"></i></div>
+                <h4 class="title"><a href="{{ url_for('artikel3') }}">Menanam Tomat dengan 9 Langkah Mudah</a></h4>
+                <p class="description">Supaya bibit bisa tumbuh jangan letakkan terlalu dekat.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="400">
+              <div class="icon-box">
+                <div class="icon"><i class="bx bi bi-calendar3"></i></div>
+                <h4 class="title"><a href="{{ url_for('artikel1') }}">Masa Panen Tanaman Tomat</a></h4>
+                <p class="description">Waktu terbaik untuk memanen tomat yaitu pada saat pagi dan sore hari.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end artikel section -->
+
+      <!--  team section  -->
+      <section id="team" class="team">
+        <div class="container">
+          <div class="section-title" data-aos="fade-up">
+            <h2>Tentang Kami</h2>
+            <p>Tim kami siap membantu anda</p>
+          </div>
+          <div class="container section-bg">
+            <div data-aos="fade-up" class="icon-box mb-4">
+              Hei! Yakin tanaman tomatmu sehat? Cek dulu yu di Care Plant!
+              <br />Website kami berbasis AI yang menggunakan algoritma CNN. Beberapa penyakit pada daun tomat yang bisa kamu deteksi disini antara lain : Tomato Leaf Bacterial Spot, Tomato Leaf Early Blight, Tomato Leaf Late Blight, Tomato
+              Leaf Mosaic Virus, Tomato Leaf Septoria, Tomato Leaf Yellow Virus.
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="member">
+                  <img src="static/img/team/dini.jpg" class="img-fluid" alt="" />
+                  <div class="member-info">
+                    <div class="member-info-content">
+                      <h4>Dinisa Handayani</h4>
+                      <p>Universitas Bina Sarana Informatika</p>
+                    </div>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="member">
+                  <img src="static/img/team/mariska.jpg" class="img-fluid" alt="" />
+                  <div class="member-info">
+                    <div class="member-info-content">
+                      <h4>Mariska Zanatullaila</h4>
+                      <p>Universitas Pendidikan Indonesia</p>
+                    </div>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="member">
+                  <img src="static/img/team/meidi.jpg" class="img-fluid" alt="" />
+                  <div class="member-info">
+                    <div class="member-info-content">
+                      <h4>Meidi Kelana Putra Nugraha</h4>
+                      <p>Universitas Muhammadiyah Jakarta</p>
+                    </div>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+                <div class="member">
+                  <img src="static/img/team/iva.jpg" class="img-fluid" alt="" />
+                  <div class="member-info">
+                    <div class="member-info-content">
+                      <h4>Ivatuljannah</h4>
+                      <p>Universitas Bakrie</p>
+                    </div>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="member">
+                  <img src="static/img/team/lawren.jpg" class="img-fluid" alt="" />
+                  <div class="member-info">
+                    <div class="member-info-content">
+                      <h4>Lawren Milanda Ramadhani</h4>
+                      <p>Universitas Bakrie</p>
+                    </div>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-4 col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="member">
+                  <img src="static/img/team/ayu.png" class="img-fluid" alt="" />
+                  <div class="member-info">
+                    <div class="member-info-content">
+                      <h4>Freshia Ayu</h4>
+                      <p>Universitas Bina Sarana Informatika</p>
+                    </div>
+                    <div class="social">
+                      <a href=""><i class="bi bi-twitter"></i></a>
+                      <a href=""><i class="bi bi-facebook"></i></a>
+                      <a href=""><i class="bi bi-instagram"></i></a>
+                      <a href=""><i class="bi bi-linkedin"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- end team section -->
+    </main>
+
+    <!--  Footer  -->
+    <footer id="footer">
+      <div class="container py-4">
+        <div class="copyright">
+          &copy; Copyright <strong><span>Napoleon Group from Molecule</span></strong
+          >. All Rights Reserved
+        </div>
+        <div class="credits">Create with <i class="bi bi-hearts"></i> by us</div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="static/vendor/aos/aos.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="static/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="static/js/main.js"></script>
+  </body>
+</html>
